@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTU Buddy - Shared Resources</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="share-resources.css">
+
+    <style>
+        header, footer {
+            background-color: #002a6d;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+
+        h2 {
+            text-align: center;
+            color: white;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <img src="CTU-Buddy-Logo.png" alt="Logo" style="float: left; height: 120px; width: 12   0;">
+    <header>
+        <h1>Share Resources</h1>
+    </header>
+        <nav>
+            <ul>
+                <li><a href="Main.html">Home</a></li>
+                <li><a href="timetable.html">Timetable</a></li>
+                <li><a href="discussion.html">Discussion</a></li>
+                <li><a href="share-resources.html">Share Resources</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <h2>Upload Resources</h2>
+        <div id="container">
+            <input type="file" id="fileInput">
+            <button onclick="uploadFile()">Upload</button>
+            <input type="text" id="searchInput" placeholder="Search by name"><br><br>
+            <button onclick="searchFiles()">Search</button>
+            <br><br>
+
+
+            <h3>Here you can download Resources to help you with your studies:</h3>
+
+
+            <table id="fileTable">
+                <thead>
+                    <tr>
+                        <th>Resource Name</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody id="fileList"></tbody>
+            </table>
+        </div>
+
+        <script src="share-resources.js"></script>
+    <footer>
+        <ul>
+            <li><a href="Main.html">Home</a></li>
+            <li><a href="timetable.html">Timetable</a></li>
+            <li><a href="discussion.html">Discussion</a></li>
+            <li><a href="share-resources.html">Share Resources</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+        <p>&copy; 2024 Kruger-Fornia CTU-Buddy. All rights reserved.</p>
+    </footer>
+
+
+
+</body>
+</html>
