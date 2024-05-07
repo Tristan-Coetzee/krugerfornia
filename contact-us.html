@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTU-Buddy | Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        header, footer {
+            background-color: #002a6d;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Additional styles specific to Contact Us page */
+        .contact-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .contact-info form {
+            margin-bottom: 20px; /* Adjust the spacing between form and image */
+        }
+        
+        h2 {text-align: center;}
+        p {text-align: center;}
+
+        
+        .flex-container{
+            display: flex;
+            justify-content: center;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="message"],
+        textarea {
+            border-radius: 5px;
+        }
+
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        button {
+        padding: 8px 20px;
+        border: none;
+        background-color: #6d0e16;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <img src="CTU-Buddy-Logo.png" alt="Logo" style="float: left; height: 120px; width: 120px;">
+    <header style="background-color: #002a6d;">
+        <h1 style="color: #fff;">Contact CTU-Buddy</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="Main.html">Home</a></li>
+            <li><a href="timetable.html">Timetable</a></li>
+            <li><a href="discussion.html">Discussion</a></li>
+            <li><a href="share-resources.html">Share Resources</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    
+    <div class="flex-container">
+        <div><iframe src="https://giphy.com/embed/KpOqvmCFdNMhF0pQb7" width="320" height="320" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+    </div>
+
+
+
+    <h2>Contact Information</h2>
+        <p>If you have any inquiries or feedback, please feel free to contact us using the form below:</p>
+        <p>Kruger-Fornia:</p>
+        <p>Gareth Britz - 20232745</p>
+        <p>Michael van den Berg - 20232496</p>
+        <p>Tristan Coetzee - 20232659</p>
+    <section class="main-content">
+        <div class="contact-info">
+            <form action="#" method="POST">
+                <label for="name"><text style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"></text>Name:</label><br>
+                <input type="text" id="name" name="name" required placeholder="Enter your name"><br>
+                <label for="email"><text style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"></text>Email:</label><br>
+                <input type="email" id="email" name="email" required placeholder="Enter your email"><br>
+                <label for="message"><text style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"></text>Message:</label><br>
+                <textarea id="message" name="message" rows="4" required placeholder="Enter your message"></textarea><br>
+                <button type="submit"><text style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"></text>Submit</button>
+            </form>
+            <form action="subscribe.php" method="post">
+    <input type="email" name="email" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+</form>
+
+            <img src="Map.png" alt="Map Image" width="40%" height="40%">
+            <div class="subscribe-form">
+                <h3>Subscribe to our Newsletter</h3>
+                <form id="subscribe-form">
+                    <input type="email" id="subscribe-email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            // Get the subscribe form and email input field
+            const subscribeForm = document.getElementById('subscribe-form');
+            const subscribeEmail = document.getElementById('subscribe-email');
+    
+            // Add an event listener to the subscribe form
+            subscribeForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting
+    
+                // Get the entered email value
+                const email = subscribeEmail.value;
+    
+                // Validate the email format (you can use a more robust validation if needed)
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailRegex.test(email)) {
+                    // Send the confirmation email
+                    sendConfirmationEmail(email);
+                } else {
+                    alert('Please enter a valid email address.');
+                }
+            });
+    
+            // Function to send the confirmation email
+            function sendConfirmationEmail(email) {
+                // Replace with your Sendgrid API key
+                const apiKey = 'YOUR_SENDGRID_API_KEY';
+
+                // Sendgrid API endpoint
+                const apiEndpoint = 'https://api.sendgrid.com/v3/mail/send';
+
+                // Email data
+                const emailData = {
+                    personalizations: [
+                        {
+                            to: [
+                                {
+                                    email: email
+                                }
+                            ],
+                            subject: 'Subscription Confirmation'
+                        }
+                    ],
+                    from: {
+                        email: 'your_email@example.com'
+                    },
+                    content: [
+                        {
+                            type: 'text/plain',
+                            value: 'Thank you for subscribing to our newsletter!'
+                        }
+                    ]
+                };
+
+                // Send the email using the Sendgrid API
+                fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify(emailData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Confirmation email sent successfully!');
+                    } else {
+                        alert('Failed to send confirmation email.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while sending the confirmation email.');
+                });
+            }
+        </script>
+
+    <footer style="background-color: #002a6d;">
+        <ul>
+            <li><a href="Main.html">Home</a></li>
+            <li><a href="timetable.html">Timetable</a></li>
+            <li><a href="discussion.html">Discussion</a></li>
+            <li><a href="share-resources.html">Share Resources</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+        <p>&copy; 2024 Kruger-Fornia CTU-Buddy. All rights reserved.</p>
+    </footer>
+
+
+</body>
+</html>
